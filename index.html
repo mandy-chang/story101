@@ -47,17 +47,48 @@
         button:hover {
             background-color: #0056b3;
         }
+        #instructions {
+            display: none;
+            white-space: pre-wrap;
+            background: #f0f8ff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Interactive Story</h1>
+        <button id="show-instructions">Show Instructions</button>
+        <div id="instructions">
+            <h2>Instructions</h2>
+            <p>Welcome to the Interactive Story game! Here’s how to play:</p>
+            <ul>
+                <li>Read the story prompt displayed on the screen.</li>
+                <li>Enter your choice in the input field and click the Submit button.</li>
+                <li>Your choices determine the path of the story, so choose wisely!</li>
+                <li>If you want to end the game at any time, type "stop" in the input field.</li>
+            </ul>
+            <p>Have fun exploring the story!</p>
+        </div>
         <div id="output">Loading story...</div>
         <input type="text" id="input" placeholder="Enter your choice here">
         <button id="submit">Submit</button>
     </div>
 
     <script>
+        // Show/hide instructions
+        document.getElementById("show-instructions").addEventListener("click", function() {
+            const instructions = document.getElementById("instructions");
+            if (instructions.style.display === "none") {
+                instructions.style.display = "block";
+            } else {
+                instructions.style.display = "none";
+            }
+        });
+
         // Load the WebAssembly module
         const output = document.getElementById("output");
         const input = document.getElementById("input");
