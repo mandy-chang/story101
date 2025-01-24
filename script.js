@@ -7,14 +7,16 @@ const stories = [
                 options: {
                     "Take the wide path": 1,
                     "Venture down the overgrown path": 4,
-                    "Turn around and leave the forest": 7
+                    "Turn around and leave the forest": 7,
+                    "Stop": 10
                 }
             },
             {
                 text: "You step onto the wide path, the ground firm beneath your feet. The forest seems quieter here, the whispers fading into the distance. The path twists and turns, and after walking for what feels like hours, you notice a faint light flickering through the trees ahead.\n\nYou soon arrive at a hidden village nestled deep in the forest. The villagers, clad in earthy tones, eye you warily but do not seem hostile. An elder steps forward, her face lined with age and wisdom. “You should not be here,” she says. “The forest is dangerous, and there are things better left undiscovered.”\n\nThe villagers warn you of a cursed artifact hidden deep in the woods. They tell you it is said to grant immense power but at a terrible cost. You are faced with a decision:",
                 options: {
                     "Stay in the village": 2,
-                    "Go back to search for the artifact": 3
+                    "Go back to search for the artifact": 3,
+                    "Stop": 10
                 }
             },
             {
@@ -30,6 +32,7 @@ const stories = [
                 options: {
                     "Touch the tree": 5,
                     "Leave the tree alone": 6
+                    "Stop": 10
                 }
             },
             {
@@ -45,6 +48,7 @@ const stories = [
                 options: {
                     "Return to the forest": 8,
                     "Seek help": 9
+                    "Stop": 10
                 }
             },
             {
@@ -53,6 +57,10 @@ const stories = [
             },
             {
                 text: "The scholars tell you that the forest has marked you. To free yourself, you must confront the source of the whispers. Reluctantly, you prepare to face the forest one last time, armed with knowledge and resolve.",
+                options: {}
+            },
+            {
+                text: "You have stoped, click home to return to the begining",
                 options: {}
             }
         ]
@@ -64,14 +72,16 @@ const stories = [
                 text: "You approach a haunted house. Do you want to enter or run away?",
                 options: {
                     "Enter": 1,
-                    "Run Away": 2
+                    "Run Away": 2,
+                    "Stop": 4
                 }
             },
             {
                 text: "You entered the house and saw a ghost. Do you want to talk to it or hide?",
                 options: {
                     "Talk to Ghost": 3,
-                    "Hide": 0
+                    "Hide": 0,
+                    "Stop": 4
                 }
             },
             {
@@ -82,8 +92,13 @@ const stories = [
                 text: "You ran away and found a safe place. Do you want to stay there or go back?",
                 options: {
                     "Stay": 0,
-                    "Go Back": 1
+                    "Go Back": 1,
+                    "Stop": 4
                 }
+            },
+            {
+                text: "You have stoped, click home to return to the begining",
+                options: {}
             }
         ]
     },
@@ -94,21 +109,24 @@ const stories = [
                 text: "You are on a spaceship. Do you want to explore the cockpit or the engine room?",
                 options: {
                     "Cockpit": 1,
-                    "Engine Room": 2
+                    "Engine Room": 2,
+                    "Stop": 5
                 }
             },
             {
                 text: "You explored the cockpit and found an alien message. Do you want to decode it or ignore it?",
                 options: {
                     "Decode": 3,
-                    "Ignore": 0
+                    "Ignore": 0,
+                    "Stop": 5
                 }
             },
             {
                 text: "You explored the engine room and found a damaged part. Do you want to repair it or call for help?",
                 options: {
                     "Repair": 4,
-                    "Call for Help": 0
+                    "Call for Help": 0,
+                    "Stop": 5
                 }
             },
             {
@@ -117,6 +135,10 @@ const stories = [
             },
             {
                 text: "You repaired the engine and saved the spaceship. Congratulations!",
+                options: {}
+            },
+            {
+                text: "You have stoped, click home to return to the begining",
                 options: {}
             }
         ]
