@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adventure Game</title>
+    <title>Myth Maker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,17 +16,20 @@
     </div>
 
     <!-- Story Screen -->
-    <div id="story-screen" style="display:none;">
-        <div id="story-text"></div>
-        <div id="choices"></div>
-        <button id="go-back-button">Go Back</button>
+<div id="story-screen" style="display:none;">
+    <div id="story-text"></div>
+    <div id="options">
+        <!-- Options will dynamically be inserted here -->
     </div>
+    <button id="home-button-story">Return Home</button> <!-- This is the Return Home button -->
+</div>
 
-    <!-- Ending Screen -->
-    <div id="ending-screen" style="display:none;">
-        <div id="ending-text"></div>
-        <button id="home-button-ending">Return Home</button>
-    </div>
+<!-- Ending Screen -->
+<div id="ending-screen" style="display:none;">
+    <div id="ending-text"></div>
+    <button id="home-button-ending">Return Home</button> <!-- This is the Return Home button -->
+</div>
+
 
     <script src="script.js"></script>
 </body>
