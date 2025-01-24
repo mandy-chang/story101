@@ -1,4 +1,4 @@
-// Define the story structure
+// Story structure
 const story = [
     {
         text: "You are standing at a crossroads. Do you want to go left or right?",
@@ -31,19 +31,17 @@ const story = [
     }
 ];
 
-// Initialize the user's choices (if you want to track the journey)
-let userChoices = [];
-let currentStep = 0; // Start from the beginning of the story
+// Initialize
+let currentStep = 0;
 
-// Handle starting the story
+// Show the Home Screen
 document.getElementById("start-button").addEventListener("click", function() {
-    document.getElementById("home-screen").style.display = "none"; // Hide the home screen
-    document.getElementById("story-screen").style.display = "block"; // Show the story screen
-    currentStep = 0; // Start from the beginning of the story
-    showStory(currentStep); // Display the first part of the story
+    document.getElementById("home-screen").style.display = "none";
+    document.getElementById("story-screen").style.display = "block";
+    showStory(currentStep);
 });
 
-// Show the story based on current step
+// Show the story and options
 function showStory(step) {
     const storyText = document.getElementById("story-text");
     const optionsList = document.getElementById("options");
@@ -53,38 +51,36 @@ function showStory(step) {
     optionsList.innerHTML = ""; // Clear previous options
 
     if (Object.keys(currentStory.options).length > 0) {
-        // If there are options, display them
         for (let option in currentStory.options) {
             const optionElement = document.createElement("div");
             optionElement.textContent = option;
             optionElement.classList.add("option");
             optionElement.addEventListener("click", function() {
-                handleOptionClick(option, currentStory.options[option]);
+                handleOptionClick(currentStory.options[option]);
             });
             optionsList.appendChild(optionElement);
         }
     } else {
-        // If no options, display the ending screen
-        document.getElementById("story-screen").style.display = "none"; // Hide the story screen
-        document.getElementById("ending-screen").style.display = "block"; // Show the ending screen
+        document.getElementById("story-screen").style.display = "none";
+        document.getElementById("ending-screen").style.display = "block";
         document.getElementById("ending-text").textContent = "Congratulations, you've completed the adventure!";
     }
 }
 
-// Handle when the user clicks on an option
-function handleOptionClick(option, nextStep) {
-    userChoices.push(option); // Save user's choice
-    currentStep = nextStep; // Move to the next part of the story
-    showStory(currentStep); // Show the updated story
+// Handle option click and move to the next story step
+function handleOptionClick(nextStep) {
+    currentStep = nextStep;
+    showStory(currentStep);
 }
 
-// Return home from the story screen or ending screen
+// Go back to the home screen from the story screen
 document.getElementById("home-button-story").addEventListener("click", function() {
-    document.getElementById("story-screen").style.display = "none"; // Hide the story screen
-    document.getElementById("home-screen").style.display = "block"; // Show the home screen
+    document.getElementById("story-screen").style.display = "none";
+    document.getElementById("home-screen").style.display = "block";
 });
 
+// Go back to the home screen from the ending screen
 document.getElementById("home-button-ending").addEventListener("click", function() {
-    document.getElementById("ending-screen").style.display = "none"; // Hide the ending screen
-    document.getElementById("home-screen").style.display = "block"; // Show the home screen
+    document.getElementById("ending-screen").style.display = "none";
+    document.getElementById("home-screen").style.display = "block";
 });
