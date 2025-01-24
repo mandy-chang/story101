@@ -1,32 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Story Game</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Stories</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- Home Screen -->
-<div id="home-screen">
-    <h1>Welcome to the Adventure Game</h1>
-    <button id="start-button">Start Adventure</button>
-</div>
+  <!-- Home Screen -->
+  <header>
+    <div class="logo">Interactive Stories</div>
+    <nav>
+      <ul>
+        <li><a href="#" id="homeLink">Home</a></li>
+        <li><a href="#library">Library</a></li>
+        <li><a href="#genres">Genres</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<!-- Story Screen -->
-<div id="story-screen" style="display:none;">
-    <h1 id="story-text"></h1>
-    <div id="options"></div>
-    <button id="home-button-story" class="home-button">Return Home</button>
-</div>
+  <main>
+    <section class="featured">
+      <h2>Featured Stories</h2>
+      <div class="story-grid">
+        <div class="story-item">
+          <img src="story1.jpg" alt="Story 1">
+          <h3>Story Title 1</h3>
+          <p>New episode just dropped!</p>
+          <button onclick="startStory('story1')">Start Story</button>
+        </div>
+        <div class="story-item">
+          <img src="story2.jpg" alt="Story 2">
+          <h3>Story Title 2</h3>
+          <p>Catch up with the latest!</p>
+          <button onclick="startStory('story2')">Start Story</button>
+        </div>
+        <!-- More story items -->
+      </div>
+    </section>
 
-<!-- Ending Screen -->
-<div id="ending-screen" style="display:none;">
-    <h1 id="ending-text"></h1>
-    <button id="home-button-ending" class="home-button">Return Home</button>
-</div>
+    <section id="genres">
+      <h2>Explore by Genre</h2>
+      <div class="genre-list">
+        <button onclick="filterByGenre('romance')">Romance</button>
+        <button onclick="filterByGenre('mystery')">Mystery</button>
+        <button onclick="filterByGenre('fantasy')">Fantasy</button>
+        <button onclick="filterByGenre('drama')">Drama</button>
+        <!-- More genres -->
+      </div>
+    </section>
 
-<script src="script.js"></script>
+    <!-- Library Section -->
+    <section id="library">
+      <h2>Your Library</h2>
+      <div class="library-grid">
+        <div class="library-item">
+          <img src="story1.jpg" alt="Story 1">
+          <h3>Story Title 1</h3>
+          <p>Continue reading...</p>
+          <button onclick="continueStory('story1')">Continue</button>
+        </div>
+        <div class="library-item">
+          <img src="story2.jpg" alt="Story 2">
+          <h3>Story Title 2</h3>
+          <p>Continue reading...</p>
+          <button onclick="continueStory('story2')">Continue</button>
+        </div>
+        <!-- More library items -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="footer-buttons">
+      <button onclick="goHome()">Home</button>
+      <button onclick="goLibrary()">Library</button>
+      <button onclick="goGenres()">Genres</button>
+    </div>
+  </footer>
+
+  <!-- Story Screen -->
+  <section id="story-screen" class="story-screen">
+    <button id="backButton" class="back-button" onclick="goBack()">Back</button>
+    <div class="story-background">
+      <img src="background1.jpg" alt="Story Background">
+    </div>
+    <div class="story-text">
+      <p id="storyText">Story text will appear here...</p>
+      <div id="choices">
+        <!-- Choices will be dynamically inserted here -->
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
 </body>
 </html>
