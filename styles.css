@@ -85,18 +85,37 @@ footer nav ul li a {
     margin-bottom: 20px;
 }
 
+.choice {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.choice:hover {
+    background-color: #f0f0f0;
+}
+
+.choice.selected {
+    background-color: #d0d0d0;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
 .progress-bar {
     height: 10px;
     background-color: #ccc;
     margin-bottom: 20px;
-}
-
-#next-button {
-    padding: 10px 20px;
-    background-color: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
 }
 
 .section {
