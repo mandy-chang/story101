@@ -175,6 +175,22 @@ footer nav ul li a:hover {
     display: block;
 }
 
+input#story-input {
+    background-color: #1b1b1b;
+    border: 2px solid #76ff03;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 3px;
+    text-align: center;
+    width: 50%;
+    margin: 10px auto;
+    display: block;
+}
+
+input#story-input::placeholder {
+    color: #76ff03;
+}
+
 /* Heading Styles */
 h1, h2 {
     color: #76ff03;
