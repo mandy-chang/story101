@@ -1,160 +1,90 @@
-// Stories
-const stories = {
-    "forest-adventure": {
-        title: "Forest Adventure",
-        steps: {
-            0: {
-                text: "You find yourself at the edge of a dark forest. Do you enter?",
-                choices: {
-                    "Enter the forest": 1,
-                    "Turn back": 2
-                }
-            },
-            1: {
-                text: "You walk into the forest and hear strange noises. Do you investigate or keep walking?",
-                choices: {
-                    "Investigate": 3,
-                    "Keep walking": 4
-                }
-            },
-            2: {
-                text: "You decided to turn back and missed a great adventure.",
-                ending: true
-            },
-            3: {
-                text: "You investigate and find a hidden treasure chest! Do you open it?",
-                choices: {
-                    "Open the chest": 5,
-                    "Leave it": 6
-                }
-            },
-            4: {
-                text: "You kept walking and found nothing interesting. The end.",
-                ending: true
-            },
-            5: {
-                text: "You opened the chest and found a magical artifact! The end.",
-                ending: true
-            },
-            6: {
-                text: "You left the chest and walked away. The end.",
-                ending: true
-            }
+// Define the story structure
+const story = [
+    {
+        text: "You are standing at a crossroads. Do you want to go left or right?",
+        options: {
+            "Go Left": 1,
+            "Go Right": 2
         }
     },
-    "dragon-quest": {
-        title: "Dragon Quest",
-        steps: {
-            0: {
-                text: "A mighty dragon blocks your path. Do you fight it or run away?",
-                choices: {
-                    "Fight the dragon": 1,
-                    "Run away": 2
-                }
-            },
-            1: {
-                text: "You fought bravely and defeated the dragon! The end.",
-                ending: true
-            },
-            2: {
-                text: "You ran away and lived to fight another day. The end.",
-                ending: true
-            }
+    {
+        text: "You went left and encountered a forest. Do you want to explore or turn back?",
+        options: {
+            "Explore": 3,
+            "Turn Back": 0
         }
     },
-    "treasure-hunt": {
-        title: "Treasure Hunt",
-        steps: {
-            0: {
-                text: "You're on a treasure hunt. Do you search the cave or the beach?",
-                choices: {
-                    "Search the cave": 1,
-                    "Search the beach": 2
-                }
-            },
-            1: {
-                text: "In the cave, you find a treasure chest. Do you open it?",
-                choices: {
-                    "Open the chest": 3,
-                    "Leave it": 4
-                }
-            },
-            2: {
-                text: "You found a buried treasure chest on the beach! Do you open it?",
-                choices: {
-                    "Open the chest": 3,
-                    "Leave it": 4
-                }
-            },
-            3: {
-                text: "You found a pile of gold! The end.",
-                ending: true
-            },
-            4: {
-                text: "You walked away from the treasure. The end.",
-                ending: true
-            }
+    {
+        text: "You went right and found a village. Do you want to enter or keep walking?",
+        options: {
+            "Enter Village": 4,
+            "Keep Walking": 0
         }
+    },
+    {
+        text: "You explored the forest and found a hidden treasure chest. Congratulations!",
+        options: {}
+    },
+    {
+        text: "You entered the village and discovered it was full of friendly people. You’ve made new friends. Congratulations!",
+        options: {}
     }
-};
+];
 
-// Variables to track the current story
-let currentStory = null;
-let currentStep = 0;
+// Initialize the user's choices (if you want to track the journey)
 let userChoices = [];
+let currentStep = 0; // Start from the beginning of the story
 
-// Load the selected story
-function loadStory(storyName) {
-    currentStory = stories[storyName].steps;
-    currentStep = 0;
-    userChoices = [];
-    showStep();
-}
+// Handle starting the story
+document.getElementById("start-button").addEventListener("click", function() {
+    document.getElementById("home-screen").style.display = "none"; // Hide the home screen
+    document.getElementById("story-screen").style.display = "block"; // Show the story screen
+    currentStep = 0; // Start from the beginning of the story
+    showStory(currentStep); // Display the first part of the story
+});
 
-// Show a story step
-function showStep() {
-    const step = currentStory[currentStep];
-    document.getElementById('story-text').textContent = step.text;
-    
-    const choicesDiv = document.getElementById('choices');
-    choicesDiv.innerHTML = '';
+// Show the story based on current step
+function showStory(step) {
+    const storyText = document.getElementById("story-text");
+    const optionsList = document.getElementById("options");
+    const currentStory = story[step];
 
-    if (step.choices) {
-        for (const [choice, nextStep] of Object.entries(step.choices)) {
-            const button = document.createElement('button');
-            button.textContent = choice;
-            button.onclick = () => {
-                currentStep = nextStep;
-                userChoices.push(choice);
-                showStep();
-            };
-            choicesDiv.appendChild(button);
+    storyText.textContent = currentStory.text;
+    optionsList.innerHTML = ""; // Clear previous options
+
+    if (Object.keys(currentStory.options).length > 0) {
+        // If there are options, display them
+        for (let option in currentStory.options) {
+            const optionElement = document.createElement("div");
+            optionElement.textContent = option;
+            optionElement.classList.add("option");
+            optionElement.addEventListener("click", function() {
+                handleOptionClick(option, currentStory.options[option]);
+            });
+            optionsList.appendChild(optionElement);
         }
-    } else if (step.ending) {
-        document.getElementById('ending-text').textContent = step.text;
-        document.getElementById('story-screen').style.display = 'none';
-        document.getElementById('ending-screen').style.display = 'block';
+    } else {
+        // If no options, display the ending screen
+        document.getElementById("story-screen").style.display = "none"; // Hide the story screen
+        document.getElementById("ending-screen").style.display = "block"; // Show the ending screen
+        document.getElementById("ending-text").textContent = "Congratulations, you've completed the adventure!";
     }
 }
 
-// Event listeners for the story icons
-document.querySelectorAll('.story-icon').forEach(icon => {
-    icon.addEventListener('click', function() {
-        const storyName = this.getAttribute('data-story'); // Get the story name from the data-story attribute
-        document.getElementById('home-screen').style.display = 'none'; // Hide the home screen
-        document.getElementById('story-screen').style.display = 'block'; // Show the story screen
-        loadStory(storyName); // Load the corresponding story
-    });
+// Handle when the user clicks on an option
+function handleOptionClick(option, nextStep) {
+    userChoices.push(option); // Save user's choice
+    currentStep = nextStep; // Move to the next part of the story
+    showStory(currentStep); // Show the updated story
+}
+
+// Return home from the story screen or ending screen
+document.getElementById("home-button-story").addEventListener("click", function() {
+    document.getElementById("story-screen").style.display = "none"; // Hide the story screen
+    document.getElementById("home-screen").style.display = "block"; // Show the home screen
 });
 
-// Event listener for the 'Go Back' button
-document.getElementById('go-back-button').addEventListener('click', function() {
-    document.getElementById('story-screen').style.display = 'none';
-    document.getElementById('home-screen').style.display = 'block';
-});
-
-// Event listener for the ending screen's home button
-document.getElementById('home-button-ending').addEventListener('click', function() {
-    document.getElementById('ending-screen').style.display = 'none';
-    document.getElementById('home-screen').style.display = 'block';
+document.getElementById("home-button-ending").addEventListener("click", function() {
+    document.getElementById("ending-screen").style.display = "none"; // Hide the ending screen
+    document.getElementById("home-screen").style.display = "block"; // Show the home screen
 });
