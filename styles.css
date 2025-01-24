@@ -1,0 +1,88 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+}
+
+.screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Story Selection Screen (Home) */
+#home-screen {
+    text-align: center;
+}
+
+.story-selection {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 600px;
+}
+
+.story-icon {
+    text-align: center;
+    cursor: pointer;
+}
+
+.story-icon img {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+}
+
+.story-icon:hover {
+    transform: scale(1.05);
+}
+
+/* Story Screen */
+#story-screen {
+    text-align: center;
+}
+
+#choices {
+    margin-top: 20px;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 60%;
+    margin-top: 20px;
+}
+
+/* Ending Screen */
+#ending-screen {
+    text-align: center;
+}
+
+#analysis-screen {
+    text-align: center;
+    margin-top: 20px;
+}
