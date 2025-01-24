@@ -128,25 +128,37 @@ function showStory(index) {
 
     function renderScene(sceneIndex) {
         const scene = story.content[sceneIndex];
-        dialogue.innerText = scene.text;
-        choices.innerHTML = '';
+        dialogue.classList.remove('fade-in');
+        dialogue.classList.add('fade-out');
+        choices.classList.remove('fade-in');
+        choices.classList.add('fade-out');
 
-        for (const [optionText, nextSceneIndex] of Object.entries(scene.options)) {
-            const button = document.createElement('button');
-            button.className = 'choice';
-            button.innerText = optionText;
-            button.addEventListener('click', () => renderScene(nextSceneIndex));
-            choices.appendChild(button);
-        }
+        setTimeout(() => {
+            dialogue.innerText = scene.text;
+            choices.innerHTML = '';
+
+            for (const [optionText, nextSceneIndex] of Object.entries(scene.options)) {
+                const button = document.createElement('button');
+                button.className = 'choice';
+                button.innerText = optionText;
+                button.addEventListener('click', () => {
+                    button.classList.add('selected');
+                    setTimeout(() => {
+                        renderScene(nextSceneIndex);
+                    }, 500);
+                });
+                choices.appendChild(button);
+            }
+
+            dialogue.classList.remove('fade-out');
+            dialogue.classList.add('fade-in');
+            choices.classList.remove('fade-out');
+            choices.classList.add('fade-in');
+        }, 500);
     }
 
     showSection('story');
     renderScene(currentSceneIndex);
-}
-
-function nextScene() {
-    // Function to handle advancing to the next scene
-    alert('Advancing to the next scene...');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
