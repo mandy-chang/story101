@@ -1,4 +1,3 @@
-/* General Styling */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -10,79 +9,57 @@ body {
     height: 100vh;
 }
 
+#home-screen, #story-screen, #ending-screen {
+    text-align: center;
+}
+
 h1 {
-    text-align: center;
-}
-
-.screen {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Story Selection Screen (Home) */
-#home-screen {
-    text-align: center;
-}
-
-.story-selection {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 600px;
+    font-size: 2em;
+    margin-bottom: 20px;
 }
 
 .story-icon {
-    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    margin: 10px;
     cursor: pointer;
-}
-
-.story-icon img {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .story-icon:hover {
-    transform: scale(1.05);
+    background-color: #45a049;
 }
 
-/* Story Screen */
-#story-screen {
-    text-align: center;
+#story-text {
+    font-size: 1.5em;
+    margin-bottom: 20px;
 }
 
-#choices {
-    margin-top: 20px;
+#choices button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#choices button:hover {
+    background-color: #45a049;
 }
 
 button {
-    margin: 10px;
     padding: 10px 20px;
-    border: none;
-    background-color: #007bff;
+    background-color: #008CBA;
     color: white;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #0056b3;
-}
-
-input[type="text"] {
-    padding: 10px;
-    width: 60%;
-    margin-top: 20px;
-}
-
-/* Ending Screen */
-#ending-screen {
-    text-align: center;
-}
-
-#analysis-screen {
-    text-align: center;
-    margin-top: 20px;
+    background-color: #007bb5;
 }
