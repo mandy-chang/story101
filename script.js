@@ -185,11 +185,11 @@ function showStory(index) {
     renderScene(currentSceneIndex);
 }
 
-function checkHomeInput() {
-    const homeInput = document.getElementById('home-input').value;
-    if (homeInput.toLowerCase() === 'stop') {
+function checkStoryInput() {
+    const storyInput = document.getElementById('story-input').value;
+    if (storyInput.toLowerCase() === 'stop') {
         showSection('home');
-        document.getElementById('home-input').value = ''; // Clear the input box
+        document.getElementById('story-input').value = ''; // Clear the input box
     }
 }
 
