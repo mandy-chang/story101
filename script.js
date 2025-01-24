@@ -1,222 +1,219 @@
-const stories = [
-    {
-        title: "The Forest of Whispers",
-        content: [
-            {
-                text: "You find yourself standing at the edge of an eerie forest known as the Forest of Whispers. Legends say the forest holds secrets, but only for those brave enough to explore it. The air is heavy with a sense of mystery, and the wind carries faint whispers, almost like the forest itself is alive. The dense trees seem to lean in, as if eager to swallow you whole. A chill runs down your spine, but your curiosity urges you forward.\n\nThe sun is beginning to set, casting long shadows across the ground. You hear the sound of rustling leaves and faint whispers calling your name, though there is no one in sight. In front of you, two paths diverge into the unknown. One is wide and well-traveled, its dirt surface packed hard by countless footsteps. The other is narrow and overgrown with vines, barely visible beneath the thick underbrush.",
-                options: {
-                    "Take the wide path": 1,
-                    "Venture down the overgrown path": 4,
-                    "Turn around and leave the forest": 7
-                }
-            },
-            {
-                text: "You step onto the wide path, the ground firm beneath your feet. The forest seems quieter here, the whispers fading into the distance. The path twists and turns, and after walking for what feels like hours, you notice a faint light flickering through the trees ahead.\n\nYou soon arrive at a hidden village nestled deep in the forest. The villagers, clad in earthy tones, eye you warily but do not seem hostile. An elder steps forward, her face lined with age and wisdom. “You should not be here,” she says. “The forest is dangerous, and there are things better left undiscovered.”\n\nThe villagers warn you of a cursed artifact hidden deep in the woods. They tell you it is said to grant immense power but at a terrible cost. You are faced with a decision:",
-                options: {
-                    "Stay in the village": 2,
-                    "Go back to search for the artifact": 3
-                }
-            },
-            {
-                text: "You spend the night listening to tales of those who sought the artifact and met untimely ends. As the dawn breaks, you decide to heed the villagers’ advice and leave the forest. However, as you walk away, you can’t shake the feeling that something is watching you.",
-                options: {}
-            },
-            {
-                text: "Deeper into the forest, the whispers grow deafening. You stumble upon a stone altar, the cursed artifact resting atop it. The air around it crackles with energy. Do you dare touch it?",
-                options: {}
-            },
-            {
-                text: "You push aside the vines and step onto the narrow path. The forest grows darker, the canopy above blocking out the fading sunlight. The whispers grow louder, almost insistent, as if guiding you somewhere. After some time, you come across an ancient tree with glowing runes carved into its bark. The runes pulse faintly, as if alive.\n\nThe tree emanates a strange energy, and you feel drawn to it. The whispers seem to emanate from the tree itself. You are faced with a choice:",
-                options: {
-                    "Touch the tree": 5,
-                    "Leave the tree alone": 6
-                }
-            },
-            {
-                text: "The new world is both beautiful and dangerous. You must navigate this magical realm, learning its secrets and defending it from dark forces that seek to corrupt it. The tree becomes your ally, guiding you through this strange land.",
-                options: {}
-            },
-            {
-                text: "The forest seems darker as you make your way back. The whispers follow you, growing fainter but never disappearing. You leave the forest, but a mark has been left on you—a faint glowing rune now etched on your palm.",
-                options: {}
-            },
-            {
-                text: "You turn your back on the forest, the whispers growing fainter as you walk away. The sense of unease lingers, but you tell yourself you made the right decision. However, that night, as you lie in bed, the whispers return. They are louder now, calling your name with urgency.\n\nYou wake up in a cold sweat. The whispers have followed you, invading your dreams. You are haunted by visions of the forest, of the paths you did not take, of the secrets left undiscovered. Eventually, you decide to:",
-                options: {
-                    "Return to the forest": 8,
-                    "Seek help": 9
-                }
-            },
-            {
-                text: "The forest seems different this time, more alive and more menacing. The whispers guide you back to the paths you once faced. Will you make the same choices, or will you forge a new path?",
-                options: {}
-            },
-            {
-                text: "The scholars tell you that the forest has marked you. To free yourself, you must confront the source of the whispers. Reluctantly, you prepare to face the forest one last time, armed with knowledge and resolve.",
-                options: {}
-            }
-        ]
-    },
-    {
-        title: "Haunted House",
-        content: [
-            {
-                text: "You approach a haunted house. Do you want to enter or run away?",
-                options: {
-                    "Enter": 1,
-                    "Run Away": 2
-                }
-            },
-            {
-                text: "You entered the house and saw a ghost. Do you want to talk to it or hide?",
-                options: {
-                    "Talk to Ghost": 3,
-                    "Hide": 0
-                }
-            },
-            {
-                text: "You talked to the ghost and discovered it's friendly. Congratulations!",
-                options: {}
-            },
-            {
-                text: "You ran away and found a safe place. Do you want to stay there or go back?",
-                options: {
-                    "Stay": 0,
-                    "Go Back": 1
-                }
-            }
-        ]
-    },
-    {
-        title: "Space Adventure",
-        content: [
-            {
-                text: "You are on a spaceship. Do you want to explore the cockpit or the engine room?",
-                options: {
-                    "Cockpit": 1,
-                    "Engine Room": 2
-                }
-            },
-            {
-                text: "You explored the cockpit and found an alien message. Do you want to decode it or ignore it?",
-                options: {
-                    "Decode": 3,
-                    "Ignore": 0
-                }
-            },
-            {
-                text: "You explored the engine room and found a damaged part. Do you want to repair it or call for help?",
-                options: {
-                    "Repair": 4,
-                    "Call for Help": 0
-                }
-            },
-            {
-                text: "You decoded the message and discovered a hidden treasure map. Congratulations!",
-                options: {}
-            },
-            {
-                text: "You repaired the engine and saved the spaceship. Congratulations!",
-                options: {}
-            }
-        ]
-    }
-];
-
-let choicesMade = [];
-
-function showSection(sectionId) {
-    document.querySelectorAll('.section').forEach(section => {
-        section.classList.remove('active');
-    });
-    document.getElementById(sectionId).classList.add('active');
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-function renderStories() {
-    const featuredStories = document.getElementById('featured-stories');
-    featuredStories.innerHTML = '';
-
-    stories.forEach((story, index) => {
-        const storyDiv = document.createElement('div');
-        storyDiv.className = 'story-box';
-        storyDiv.innerHTML = `<h3>${story.title}</h3>`;
-        storyDiv.addEventListener('click', () => {
-            choicesMade = [];  // Reset choices when starting a new story
-            showStory(index);
-        });
-        featuredStories.appendChild(storyDiv);
-    });
+header {
+    background-color: #1b1b1b;
+    color: #76ff03;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-function showStory(index) {
-    const story = stories[index];
-    let currentSceneIndex = 0;
-    const storySection = document.getElementById('story');
-    const dialogue = document.getElementById('dialogue');
-    const choices = document.getElementById('choices');
-
-    function renderScene(sceneIndex) {
-        const scene = story.content[sceneIndex];
-        dialogue.classList.remove('fade-in');
-        dialogue.classList.add('fade-out');
-        choices.classList.remove('fade-in');
-        choices.classList.add('fade-out');
-
-        setTimeout(() => {
-            dialogue.innerText = scene.text;
-            choices.innerHTML = '';
-
-            for (const [optionText, nextSceneIndex] of Object.entries(scene.options)) {
-                const button = document.createElement('button');
-                button.className = 'choice';
-                button.innerText = optionText;
-                button.addEventListener('click', () => {
-                    button.classList.add('selected');
-                    choicesMade.push({ choice: optionText, dialogue: scene.text });
-                    if (typeof nextSceneIndex === 'number') {
-                        renderScene(nextSceneIndex);
-                    } else {
-                        showReport();
-                    }
-                });
-                choices.appendChild(button);
-            }
-
-            dialogue.classList.remove('fade-out');
-            dialogue.classList.add('fade-in');
-            choices.classList.remove('fade-out');
-            choices.classList.add('fade-in');
-        }, 500);
-    }
-
-    showSection('story');
-    renderScene(currentSceneIndex);
+header .logo {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
 }
 
-function showReport() {
-    const reportContent = document.getElementById('report-content');
-    reportContent.innerHTML = '<h3>Choices Made</h3>';
-    choicesMade.forEach((choice, index) => {
-        const choiceElement = document.createElement('p');
-        choiceElement.innerHTML = `<strong>Choice ${index + 1}:</strong> ${choice.choice}<br><em>${choice.dialogue}</em>`;
-        reportContent.appendChild(choiceElement);
-    });
-    showSection('report');
+header nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
 }
 
-function returnToHome() {
-    showSection('home');
+header nav ul li {
+    margin: 0 15px;
 }
 
-function checkStoryInput() {
-    const storyInput = document.getElementById('story-input').value;
-    if (storyInput.toLowerCase() === 'stop') {
-        returnToHome();
-        document.getElementById('story-input').value = ''; // Clear the input box
-    }
+header nav ul li a {
+    color: #76ff03;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    showSection('home');
-    renderStories();
-});
+header nav ul li a:hover {
+    color: #ffffff;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+footer {
+    background-color: #1b1b1b;
+    color: #76ff03;
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.5);
+}
+
+footer nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+footer nav ul li {
+    margin: 0 15px;
+}
+
+footer nav ul li a {
+    color: #76ff03;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+footer nav ul li a:hover {
+    color: #ffffff;
+}
+
+/* Story Grid Styles */
+.story-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.story-box {
+    background-color: #1b1b1b;
+    border: 2px solid #76ff03;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.story-box:hover {
+    background-color: #2b2b2b;
+    transform: scale(1.05);
+}
+
+.story-box h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #76ff03;
+}
+
+/* Story Content Styles */
+.story-text {
+    margin-bottom: 20px;
+}
+
+.choice {
+    background-color: #1b1b1b;
+    border: 2px solid #76ff03;
+    color: #ffffff;  /* Ensure the text color is white */
+    padding: 10px;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.choice:hover {
+    background-color: #2b2b2b;
+    color: #76ff03;  /* Change text color on hover for better visibility */
+}
+
+.choice.selected {
+    background-color: #76ff03;
+    color: #1b1b1b;  /* Ensure contrast when selected */
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #76ff03;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+input#story-input {
+    background-color: #1b1b1b;
+    border: 2px solid #76ff03;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 3px;
+    text-align: center;
+    width: 50%;
+    margin: 10px auto;
+    display: block;
+}
+
+input#story-input::placeholder {
+    color: #76ff03;
+}
+
+/* Heading Styles */
+h1, h2 {
+    color: #76ff03;
+    text-align: center;
+}
+
+/* Report Styles */
+#report-content {
+    background-color: #1b1b1b;
+    border: 2px solid #76ff03;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    color: #ffffff;
+}
+
+#report-content p {
+    margin: 10px 0;
+}
+
+#report-content h3 {
+    color: #76ff03;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #76ff03;
+    border: none;
+    color: #1b1b1b;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 20px auto;
+}
+
+button:hover {
+    background-color: #5cbf02;
+}
