@@ -123,6 +123,8 @@ const stories = [
     }
 ];
 
+let choicesMade = [];
+
 function showSection(sectionId) {
     document.querySelectorAll('.section').forEach(section => {
         section.classList.remove('active');
@@ -138,7 +140,10 @@ function renderStories() {
         const storyDiv = document.createElement('div');
         storyDiv.className = 'story-box';
         storyDiv.innerHTML = `<h3>${story.title}</h3>`;
-        storyDiv.addEventListener('click', () => showStory(index));
+        storyDiv.addEventListener('click', () => {
+            choicesMade = [];  // Reset choices when starting a new story
+            showStory(index);
+        });
         featuredStories.appendChild(storyDiv);
     });
 }
@@ -167,33 +172,7 @@ function showStory(index) {
                 button.innerText = optionText;
                 button.addEventListener('click', () => {
                     button.classList.add('selected');
-                    setTimeout(() => {
-                        renderScene(nextSceneIndex);
-                    }, 500);
-                });
-                choices.appendChild(button);
-            }
-
-            dialogue.classList.remove('fade-out');
-            dialogue.classList.add('fade-in');
-            choices.classList.remove('fade-out');
-            choices.classList.add('fade-in');
-        }, 500);
-    }
-
-    showSection('story');
-    renderScene(currentSceneIndex);
-}
-
-function checkStoryInput() {
-    const storyInput = document.getElementById('story-input').value;
-    if (storyInput.toLowerCase() === 'stop') {
-        showSection('home');
-        document.getElementById('story-input').value = ''; // Clear the input box
-    }
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    showSection('home');
-    renderStories();
-});
+                    choicesMade.push({ choice: optionText, dialogue: scene.text });
+                    if (Object.keys(scene.options).length === 1) {
+                        showReport();
+                    } else {
