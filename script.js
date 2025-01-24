@@ -150,10 +150,10 @@ function renderStories() {
 
 function showStory(index) {
     const story = stories[index];
+    let currentSceneIndex = 0;
     const storySection = document.getElementById('story');
     const dialogue = document.getElementById('dialogue');
     const choices = document.getElementById('choices');
-    let currentSceneIndex = 0;
 
     function renderScene(sceneIndex) {
         const scene = story.content[sceneIndex];
@@ -173,6 +173,50 @@ function showStory(index) {
                 button.addEventListener('click', () => {
                     button.classList.add('selected');
                     choicesMade.push({ choice: optionText, dialogue: scene.text });
-                    if (Object.keys(scene.options).length === 1) {
-                        showReport();
+                    if (typeof nextSceneIndex === 'number') {
+                        renderScene(nextSceneIndex);
                     } else {
+                        showReport();
+                    }
+                });
+                choices.appendChild(button);
+            }
+
+            dialogue.classList.remove('fade-out');
+            dialogue.classList.add('fade-in');
+            choices.classList.remove('fade-out');
+            choices.classList.add('fade-in');
+        }, 500);
+    }
+
+    showSection('story');
+    renderScene(currentSceneIndex);
+}
+
+function showReport() {
+    const reportContent = document.getElementById('report-content');
+    reportContent.innerHTML = '<h3>Choices Made</h3>';
+    choicesMade.forEach((choice, index) => {
+        const choiceElement = document.createElement('p');
+        choiceElement.innerHTML = `<strong>Choice ${index + 1}:</strong> ${choice.choice}<br><em>${choice.dialogue}</em>`;
+        reportContent.appendChild(choiceElement);
+    });
+    showSection('report');
+}
+
+function returnToHome() {
+    showSection('home');
+}
+
+function checkStoryInput() {
+    const storyInput = document.getElementById('story-input').value;
+    if (storyInput.toLowerCase() === 'stop') {
+        returnToHome();
+        document.getElementById('story-input').value = ''; // Clear the input box
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    showSection('home');
+    renderStories();
+});
