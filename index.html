@@ -67,6 +67,7 @@
                 <li>take the path</li>
                 <li>enter the cave</li>
             </ul>
+            <button id="home-button-story">Home</button> <!-- Home Button in Story -->
         </div>
 
         <!-- Ending Screen -->
@@ -75,6 +76,7 @@
             <p>Thank you for playing!</p>
             <button id="analyze-button">Analyze Your Choices</button>
             <div id="analysis-report"></div>
+            <button id="home-button-ending">Home</button> <!-- Home Button in Ending -->
         </div>
     </div>
 
@@ -177,6 +179,20 @@
             analysisText += "</ul>";
             document.getElementById("analysis-report").innerHTML = analysisText;
         });
+
+        // Home button event listener for returning to the introduction screen
+        function goHome() {
+            currentStep = 0; // Reset the story step
+            userChoices = []; // Clear the user's choices
+            document.getElementById("introduction-screen").style.display = "block"; // Show introduction
+            document.getElementById("story-screen").style.display = "none"; // Hide story
+            document.getElementById("ending-screen").style.display = "none"; // Hide ending
+            document.getElementById("story-text").textContent = story[currentStep].text; // Reset story text
+        }
+
+        // Attach event listeners to both Home buttons
+        document.getElementById("home-button-story").addEventListener("click", goHome);
+        document.getElementById("home-button-ending").addEventListener("click", goHome);
     </script>
 </body>
 </html>
