@@ -3,256 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Story with Analysis</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Default light mode styles */
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            background-color: white;
-            color: black;
-        }
-
-        /* Dark mode styles (for users who prefer dark mode) */
-        @media (prefers-color-scheme: dark) {
-            body {
-                background-color: #121212;
-                color: white;
-            }
-
-            .container {
-                background-color: #333;
-                color: white;
-                border: 1px solid #444;
-            }
-
-            button {
-                background-color: #007BFF;
-                color: white;
-            }
-
-            button:hover {
-                background-color: #0056b3;
-            }
-
-            .icon-btn:hover {
-                color: #007BFF;
-            }
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        h1, h2, p {
-            text-align: center;
-        }
-        
-        input[type="text"], button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        
-        button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        .screen {
-            display: none;
-        }
-
-        .icon-btn {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        
-        .icon-btn:hover {
-            color: #007BFF;
-        }
-    </style>
+    <title>Choose Your Adventure</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Introduction Screen -->
-        <div id="introduction-screen" class="screen">
-            <h1>Welcome to the Interactive Story</h1>
-            <p>Embark on a thrilling adventure where your choices shape the outcome.</p>
-            <button id="start-button">Start Story</button>
-        </div>
-
-        <!-- Story Screen -->
-        <div id="story-screen" class="screen">
-            <h1>Interactive Story</h1>
-            <p id="story-text">You wake up in a dark forest. There's a path ahead and a cave to your left. What would you like to do?</p>
-            <form id="story-form">
-                <label for="choice">What would you like to do?</label>
-                <input type="text" id="choice" name="choice" placeholder="Type your choice here...">
-                <button type="submit">Submit</button>
-            </form>
-            <ul id="options">
-                <strong>Available options:</strong>
-                <li>take the path</li>
-                <li>enter the cave</li>
-            </ul>
-            <button id="home-button-story" class="icon-btn"><i class="fas fa-home"></i></button> <!-- Home Icon -->
-            <button id="go-back-button" class="icon-btn"><i class="fas fa-arrow-left"></i></button> <!-- Go Back Icon -->
-        </div>
-
-        <!-- Ending Screen -->
-        <div id="ending-screen" class="screen">
-            <h1>The Story Has Ended</h1>
-            <p>Thank you for playing!</p>
-            <button id="analyze-button">Analyze Your Choices</button>
-            <div id="analysis-report"></div>
-            <button id="home-button-ending" class="icon-btn"><i class="fas fa-home"></i></button> <!-- Home Icon -->
+    <!-- Home Screen (Story Shelf) -->
+    <div id="home-screen" class="screen">
+        <h1>Choose Your Adventure</h1>
+        <div class="story-shelf">
+            <div class="story-icon" data-story="forest-adventure">
+                <img src="https://via.placeholder.com/150" alt="Forest Adventure">
+                <p>Forest Adventure</p>
+            </div>
+            <div class="story-icon" data-story="dragon-quest">
+                <img src="https://via.placeholder.com/150" alt="Dragon Quest">
+                <p>Dragon Quest</p>
+            </div>
+            <div class="story-icon" data-story="treasure-hunt">
+                <img src="https://via.placeholder.com/150" alt="Treasure Hunt">
+                <p>Treasure Hunt</p>
+            </div>
         </div>
     </div>
 
-    <script>
-        const story = [
-            {
-                text: "You wake up in a dark forest. There's a path ahead and a cave to your left. What would you like to do?",
-                options: {"take the path": 1, "enter the cave": 2}
-            },
-            {
-                text: "You follow the path and find a small village. Would you like to explore the village or continue walking?",
-                options: {"explore the village": 3, "continue walking": 4}
-            },
-            {
-                text: "The cave is dark and damp. You hear a growl deeper inside. Would you like to investigate or leave the cave?",
-                options: {"investigate": 5, "leave the cave": 1}
-            },
-            {
-                text: "The villagers welcome you and offer food. You learn about a treasure hidden nearby. Would you like to search for it or rest for the night?",
-                options: {"search for the treasure": 6, "rest for the night": 7}
-            },
-            {
-                text: "You keep walking and find yourself at a crossroads. Would you like to go left or right?",
-                options: {"go left": 8, "go right": 9}
-            },
-            {
-                text: "You encounter a fierce dragon! Would you like to fight or flee?",
-                options: {"fight": 10, "flee": 1}
-            },
-            {
-                text: "You search for the treasure and find a hidden chest filled with gold. Congratulations! The adventure ends here.",
-                options: {}
-            },
-            {
-                text: "You rest for the night and wake up feeling refreshed. The adventure ends here.",
-                options: {}
-            },
-            {
-                text: "The left path leads to a serene lake. You relax and enjoy the peaceful surroundings. The adventure ends here.",
-                options: {}
-            },
-            {
-                text: "The right path leads to a dense jungle. You decide to turn back for safety. The adventure ends here.",
-                options: {}
-            },
-            {
-                text: "You bravely fight the dragon and emerge victorious. The villagers celebrate your heroism. The adventure ends here.",
-                options: {}
-            }
-        ];
+    <!-- Story Screen -->
+    <div id="story-screen" class="screen">
+        <div id="story-text"></div>
+        <div id="choices"></div>
+        <button id="go-back-button">Go Back</button>
+    </div>
 
-        let currentStep = 0;
-        let userChoices = [];
-        let previousStep = -1;
+    <!-- Ending Screen -->
+    <div id="ending-screen" class="screen">
+        <div id="ending-text"></div>
+        <button id="home-button-ending">Home</button>
+        <button id="analyze-button">Analyze My Choices</button>
+        <div id="analysis-report"></div>
+    </div>
 
-        // Show the introduction screen initially
-        document.getElementById("introduction-screen").style.display = "block";
-
-        // Start the story
-        document.getElementById("start-button").addEventListener("click", function() {
-            document.getElementById("introduction-screen").style.display = "none";
-            document.getElementById("story-screen").style.display = "block";
-        });
-
-        // Handle story form submission
-        document.getElementById("story-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            const userChoice = document.getElementById("choice").value.toLowerCase();
-            const currentOptions = story[currentStep].options;
-
-            if (userChoice in currentOptions) {
-                userChoices.push(userChoice); // Store user choice
-                previousStep = currentStep; // Save previous step
-                currentStep = currentOptions[userChoice];
-                document.getElementById("story-text").textContent = story[currentStep].text;
-
-                const nextOptions = story[currentStep].options;
-                const optionsList = document.getElementById("options");
-                optionsList.innerHTML = "";
-                if (Object.keys(nextOptions).length > 0) {
-                    optionsList.innerHTML = "<strong>Available options:</strong>";
-                    for (let option in nextOptions) {
-                        optionsList.innerHTML += `<li>${option}</li>`;
-                    }
-                } else {
-                    document.getElementById("story-screen").style.display = "none";
-                    document.getElementById("ending-screen").style.display = "block";
-                }
-            } else {
-                document.getElementById("story-text").textContent = "Invalid choice. Please choose again.";
-            }
-
-            document.getElementById("choice").value = "";
-        });
-
-        // Go Back functionality
-        document.getElementById("go-back-button").addEventListener("click", function() {
-            if (previousStep >= 0) {
-                currentStep = previousStep; // Return to previous step
-                document.getElementById("story-text").textContent = story[currentStep].text;
-                previousStep = -1; // Reset previous step
-            }
-        });
-
-        // Analyze user choices at the end of the story
-        document.getElementById("analyze-button").addEventListener("click", function() {
-            let analysisText = "<h2>Your Choices:</h2><ul>";
-            userChoices.forEach((choice, index) => {
-                analysisText += `<li>Step ${index + 1}: You chose to '${choice}'.</li>`;
-            });
-            analysisText += "</ul>";
-            document.getElementById("analysis-report").innerHTML = analysisText;
-        });
-
-        // Home button event listener for returning to the introduction screen
-        function goHome() {
-            currentStep = 0; // Reset the story step
-            userChoices = []; // Clear the user's choices
-            document.getElementById("introduction-screen").style.display = "block"; // Show introduction
-            document.getElementById("story-screen").style.display = "none"; // Hide story
-            document.getElementById("ending-screen").style.display = "none"; // Hide ending
-            document.getElementById("story-text").textContent = story[currentStep].text; // Reset story text
-        }
-
-        // Attach event listeners to both Home buttons
-        document.getElementById("home-button-story").addEventListener("click", goHome);
-        document.getElementById("home-button-ending").addEventListener("click", goHome);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
