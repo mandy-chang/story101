@@ -151,7 +151,6 @@ function renderStories() {
 function showStory(index) {
     const story = stories[index];
     let currentSceneIndex = 0;
-    const storySection = document.getElementById('story');
     const dialogue = document.getElementById('dialogue');
     const choices = document.getElementById('choices');
 
@@ -173,13 +172,10 @@ function showStory(index) {
                 button.addEventListener('click', () => {
                     button.classList.add('selected');
                     choicesMade.push({ choice: optionText, dialogue: scene.text });
-                    if (typeof nextSceneIndex === 'number') {
-                        renderScene(nextSceneIndex);
-                    } else {
+                    if (Object.keys(scene.options).length === 0) {
                         showReport();
+                    } else {
+                        renderScene(nextSceneIndex);
                     }
                 });
                 choices.appendChild(button);
-            }
-
-            dialogue.class
