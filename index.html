@@ -13,7 +13,6 @@
             <ul>
                 <li><a href="#home" onclick="showSection('home')">Home</a></li>
                 <li><a href="#library" onclick="showSection('library')">Library</a></li>
-                <li><a href="#genres" onclick="showSection('genres')">Genres</a></li>
             </ul>
         </nav>
     </header>
@@ -21,26 +20,13 @@
     <main id="main-content">
         <section id="home" class="section">
             <h1>Featured Stories</h1>
-            <div class="carousel" id="featured-stories">
+            <div class="story-grid" id="featured-stories">
                 <!-- Featured stories will be rendered here -->
-            </div>
-            <h2>Genres</h2>
-            <div class="genres">
-                <!-- Scrollable genre sections with story covers -->
-                <div class="genre">Fantasy</div>
-                <div class="genre">Mystery</div>
-                <div class="genre">Romance</div>
             </div>
         </section>
 
         <section id="story" class="section">
-            <div class="story-background">
-                <!-- Story background images -->
-            </div>
             <div class="story-content">
-                <div class="character">
-                    <!-- Character images -->
-                </div>
                 <div class="story-text">
                     <p id="dialogue">Story dialogue here</p>
                     <div id="choices">
@@ -60,13 +46,6 @@
                 <!-- List of stories with progress indicators will be rendered here -->
             </div>
         </section>
-
-        <section id="genres" class="section">
-            <h2>Genres</h2>
-            <div class="story-list">
-                <!-- List of stories by genre -->
-            </div>
-        </section>
     </main>
 
     <footer>
@@ -74,11 +53,10 @@
             <ul>
                 <li><a href="#home" onclick="showSection('home')">Home</a></li>
                 <li><a href="#library" onclick="showSection('library')">Library</a></li>
-                <li><a href="#genres" onclick="showSection('genres')">Genres</a></li>
             </ul>
         </nav>
     </footer>
 
-    <script src="app.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
