@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Story</title>
+    <title>Interactive Story with Analysis</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,10 +18,10 @@
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-        h1 {
+        h1, h2, p {
             text-align: center;
         }
-        input[type="text"] {
+        input[type="text"], button {
             width: 100%;
             padding: 10px;
             margin-top: 10px;
@@ -33,30 +33,51 @@
             background-color: #007BFF;
             color: white;
             border: none;
-            padding: 10px 20px;
             cursor: pointer;
             border-radius: 5px;
         }
         button:hover {
             background-color: #0056b3;
         }
+        .screen {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Interactive Story</h1>
-        <p id="story-text">You wake up in a dark forest. There's a path ahead and a cave to your left. What would you like to do?</p>
-        <form id="story-form">
-            <label for="choice">What would you like to do?</label>
-            <input type="text" id="choice" name="choice" placeholder="Type your choice here...">
-            <button type="submit">Submit</button>
-        </form>
-        <ul id="options">
-            <strong>Available options:</strong>
-            <li>take the path</li>
-            <li>enter the cave</li>
-        </ul>
+        <!-- Introduction Screen -->
+        <div id="introduction-screen" class="screen">
+            <h1>Welcome to the Interactive Story</h1>
+            <p>Embark on a thrilling adventure where your choices shape the outcome.</p>
+            <button id="start-button">Start Story</button>
+        </div>
+
+        <!-- Story Screen -->
+        <div id="story-screen" class="screen">
+            <h1>Interactive Story</h1>
+            <p id="story-text">You wake up in a dark forest. There's a path ahead and a cave to your left. What would you like to do?</p>
+            <form id="story-form">
+                <label for="choice">What would you like to do?</label>
+                <input type="text" id="choice" name="choice" placeholder="Type your choice here...">
+                <button type="submit">Submit</button>
+            </form>
+            <ul id="options">
+                <strong>Available options:</strong>
+                <li>take the path</li>
+                <li>enter the cave</li>
+            </ul>
+        </div>
+
+        <!-- Ending Screen -->
+        <div id="ending-screen" class="screen">
+            <h1>The Story Has Ended</h1>
+            <p>Thank you for playing!</p>
+            <button id="analyze-button">Analyze Your Choices</button>
+            <div id="analysis-report"></div>
+        </div>
     </div>
+
     <script>
         const story = [
             {
@@ -106,17 +127,25 @@
         ];
 
         let currentStep = 0;
+        let userChoices = [];
 
+        // Show the introduction screen initially
+        document.getElementById("introduction-screen").style.display = "block";
+
+        // Start the story
+        document.getElementById("start-button").addEventListener("click", function() {
+            document.getElementById("introduction-screen").style.display = "none";
+            document.getElementById("story-screen").style.display = "block";
+        });
+
+        // Handle story form submission
         document.getElementById("story-form").addEventListener("submit", function(event) {
             event.preventDefault();
             const userChoice = document.getElementById("choice").value.toLowerCase();
             const currentOptions = story[currentStep].options;
 
-            if (userChoice === "stop") {
-                document.getElementById("story-text").textContent = "Thank you for playing!";
-                document.getElementById("options").innerHTML = "";
-                document.getElementById("story-form").remove();
-            } else if (userChoice in currentOptions) {
+            if (userChoice in currentOptions) {
+                userChoices.push(userChoice); // Store user choice
                 currentStep = currentOptions[userChoice];
                 document.getElementById("story-text").textContent = story[currentStep].text;
 
@@ -129,13 +158,24 @@
                         optionsList.innerHTML += `<li>${option}</li>`;
                     }
                 } else {
-                    document.getElementById("story-form").remove();
+                    document.getElementById("story-screen").style.display = "none";
+                    document.getElementById("ending-screen").style.display = "block";
                 }
             } else {
                 document.getElementById("story-text").textContent = "Invalid choice. Please choose again.";
             }
 
             document.getElementById("choice").value = "";
+        });
+
+        // Analyze user choices at the end of the story
+        document.getElementById("analyze-button").addEventListener("click", function() {
+            let analysisText = "<h2>Your Choices:</h2><ul>";
+            userChoices.forEach((choice, index) => {
+                analysisText += `<li>Step ${index + 1}: You chose to '${choice}'.</li>`;
+            });
+            analysisText += "</ul>";
+            document.getElementById("analysis-report").innerHTML = analysisText;
         });
     </script>
 </body>
