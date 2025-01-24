@@ -3,33 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Myth Maker</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Interactive Story Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Home Screen -->
     <div id="home-screen">
-        <h1>Choose Your Adventure</h1>
-        <div class="story-icon" data-story="forest-adventure">Forest Adventure</div>
-        <div class="story-icon" data-story="dragon-quest">Dragon Quest</div>
-        <div class="story-icon" data-story="treasure-hunt">Treasure Hunt</div>
+        <h1>Welcome to the Adventure Game</h1>
+        <button id="start-button">Start Adventure</button>
     </div>
 
-    <!-- Story Screen -->
-<div id="story-screen" style="display:none;">
-    <div id="story-text"></div>
-    <div id="options">
-        <!-- Options will dynamically be inserted here -->
+    <div id="story-screen" style="display:none;">
+        <h1 id="story-text"></h1>
+        <div id="options"></div>
+        <button id="home-button-story" class="home-button">Return Home</button>
     </div>
-    <button id="home-button-story">Return Home</button> <!-- This is the Return Home button -->
-</div>
 
-<!-- Ending Screen -->
-<div id="ending-screen" style="display:none;">
-    <div id="ending-text"></div>
-    <button id="home-button-ending">Return Home</button> <!-- This is the Return Home button -->
-</div>
-
+    <div id="ending-screen" style="display:none;">
+        <h1 id="ending-text"></h1>
+        <button id="home-button-ending" class="home-button">Return Home</button>
+    </div>
 
     <script src="script.js"></script>
 </body>
