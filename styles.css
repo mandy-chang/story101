@@ -4,34 +4,107 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-#app {
-    background-color: #fff;
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+header .logo {
+    text-align: center;
+    font-size: 24px;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    flex: 1;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
     text-align: center;
 }
 
-.story {
+footer nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
     margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
 }
 
-.choice {
-    margin: 5px 0;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+footer nav ul li {
+    margin: 0 15px;
+}
+
+footer nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.carousel, .genres, .story-list {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+}
+
+.story-background {
+    height: 300px;
+    background-color: #ccc;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.story-content {
+    text-align: center;
+}
+
+.character {
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.story-text {
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: #ccc;
+    margin-bottom: 20px;
+}
+
+#next-button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
     cursor: pointer;
 }
 
-.choice:hover {
-    background-color: #f0f0f0;
+.section {
+    display: none;
 }
