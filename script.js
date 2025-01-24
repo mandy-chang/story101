@@ -1,59 +1,102 @@
 const stories = [
     {
-        title: "Story 1",
-        description: "Description of Story 1",
-        interactions: [
-            { id: 1, text: "Interaction 1" },
-            { id: 2, text: "Interaction 2" },
-            { id: 3, text: "Interaction 3" },
-            { id: 4, text: "Interaction 4" },
-            { id: 5, text: "Interaction 5" },
-        ],
+        title: "Crossroads Adventure",
+        content: [
+            {
+                text: "You are standing at a crossroads. Do you want to go left or right?",
+                options: {
+                    "Go Left": 1,
+                    "Go Right": 2
+                }
+            },
+            {
+                text: "You went left and encountered a forest. Do you want to explore or turn back?",
+                options: {
+                    "Explore": 3,
+                    "Turn Back": 0
+                }
+            },
+            {
+                text: "You went right and found a village. Do you want to enter or keep walking?",
+                options: {
+                    "Enter Village": 4,
+                    "Keep Walking": 0
+                }
+            },
+            {
+                text: "You explored the forest and found a hidden treasure chest. Congratulations!",
+                options: {}
+            },
+            {
+                text: "You entered the village and discovered it was full of friendly people. You’ve made new friends. Congratulations!",
+                options: {}
+            }
+        ]
     },
     {
-        title: "Story 2",
-        description: "Description of Story 2",
-        interactions: [
-            { id: 1, text: "Interaction 1" },
-            { id: 2, text: "Interaction 2" },
-            { id: 3, text: "Interaction 3" },
-            { id: 4, text: "Interaction 4" },
-            { id: 5, text: "Interaction 5" },
-        ],
+        title: "Haunted House",
+        content: [
+            {
+                text: "You approach a haunted house. Do you want to enter or run away?",
+                options: {
+                    "Enter": 1,
+                    "Run Away": 2
+                }
+            },
+            {
+                text: "You entered the house and saw a ghost. Do you want to talk to it or hide?",
+                options: {
+                    "Talk to Ghost": 3,
+                    "Hide": 0
+                }
+            },
+            {
+                text: "You ran away and found a safe place. Do you want to stay there or go back?",
+                options: {
+                    "Stay": 0,
+                    "Go Back": 1
+                }
+            },
+            {
+                text: "You talked to the ghost and discovered it's friendly. Congratulations!",
+                options: {}
+            }
+        ]
     },
     {
-        title: "Story 3",
-        description: "Description of Story 3",
-        interactions: [
-            { id: 1, text: "Interaction 1" },
-            { id: 2, text: "Interaction 2" },
-            { id: 3, text: "Interaction 3" },
-            { id: 4, text: "Interaction 4" },
-            { id: 5, text: "Interaction 5" },
-        ],
-    },
-    {
-        title: "Story 4",
-        description: "Description of Story 4",
-        interactions: [
-            { id: 1, text: "Interaction 1" },
-            { id: 2, text: "Interaction 2" },
-            { id: 3, text: "Interaction 3" },
-            { id: 4, text: "Interaction 4" },
-            { id: 5, text: "Interaction 5" },
-        ],
-    },
-    {
-        title: "Story 5",
-        description: "Description of Story 5",
-        interactions: [
-            { id: 1, text: "Interaction 1" },
-            { id: 2, text: "Interaction 2" },
-            { id: 3, text: "Interaction 3" },
-            { id: 4, text: "Interaction 4" },
-            { id: 5, text: "Interaction 5" },
-        ],
-    },
+        title: "Space Adventure",
+        content: [
+            {
+                text: "You are on a spaceship. Do you want to explore the cockpit or the engine room?",
+                options: {
+                    "Cockpit": 1,
+                    "Engine Room": 2
+                }
+            },
+            {
+                text: "You explored the cockpit and found an alien message. Do you want to decode it or ignore it?",
+                options: {
+                    "Decode": 3,
+                    "Ignore": 0
+                }
+            },
+            {
+                text: "You explored the engine room and found a damaged part. Do you want to repair it or call for help?",
+                options: {
+                    "Repair": 4,
+                    "Call for Help": 0
+                }
+            },
+            {
+                text: "You decoded the message and discovered a hidden treasure map. Congratulations!",
+                options: {}
+            },
+            {
+                text: "You repaired the engine and saved the spaceship. Congratulations!",
+                options: {}
+            }
+        ]
+    }
 ];
 
 function showSection(sectionId) {
@@ -69,8 +112,8 @@ function renderStories() {
 
     stories.forEach((story, index) => {
         const storyDiv = document.createElement('div');
-        storyDiv.className = 'story';
-        storyDiv.innerHTML = `<h3>${story.title}</h3><p>${story.description}</p>`;
+        storyDiv.className = 'story-box';
+        storyDiv.innerHTML = `<h3>${story.title}</h3>`;
         storyDiv.addEventListener('click', () => showStory(index));
         featuredStories.appendChild(storyDiv);
     });
@@ -81,22 +124,24 @@ function showStory(index) {
     const storySection = document.getElementById('story');
     const dialogue = document.getElementById('dialogue');
     const choices = document.getElementById('choices');
+    let currentSceneIndex = 0;
+
+    function renderScene(sceneIndex) {
+        const scene = story.content[sceneIndex];
+        dialogue.innerText = scene.text;
+        choices.innerHTML = '';
+
+        for (const [optionText, nextSceneIndex] of Object.entries(scene.options)) {
+            const button = document.createElement('button');
+            button.className = 'choice';
+            button.innerText = optionText;
+            button.addEventListener('click', () => renderScene(nextSceneIndex));
+            choices.appendChild(button);
+        }
+    }
 
     showSection('story');
-    dialogue.innerText = `Welcome to ${story.title}`;
-    choices.innerHTML = '';
-
-    story.interactions.forEach(interaction => {
-        const button = document.createElement('button');
-        button.className = 'choice';
-        button.innerText = interaction.text;
-        button.addEventListener('click', () => handleInteraction(index, interaction.id));
-        choices.appendChild(button);
-    });
-}
-
-function handleInteraction(storyIndex, interactionId) {
-    alert(`You selected Interaction ${interactionId} in Story ${storyIndex + 1}`);
+    renderScene(currentSceneIndex);
 }
 
 function nextScene() {
