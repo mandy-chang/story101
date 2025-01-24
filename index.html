@@ -3,42 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choose Your Adventure</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Interactive Story Adventure</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Home Screen (Story Shelf) -->
     <div id="home-screen" class="screen">
-        <h1>Choose Your Adventure</h1>
-        <div class="story-shelf">
+        <h1>Select Your Adventure</h1>
+        <div class="story-selection">
             <div class="story-icon" data-story="forest-adventure">
-                <img src="https://via.placeholder.com/150" alt="Forest Adventure">
-                <p>Forest Adventure</p>
+                <img src="via.placeholder.com/150" alt="Forest Adventure">
+                <h2>Forest Adventure</h2>
             </div>
             <div class="story-icon" data-story="dragon-quest">
-                <img src="https://via.placeholder.com/150" alt="Dragon Quest">
-                <p>Dragon Quest</p>
+                <img src="via.placeholder.com/150" alt="Dragon Quest">
+                <h2>Dragon Quest</h2>
             </div>
             <div class="story-icon" data-story="treasure-hunt">
-                <img src="https://via.placeholder.com/150" alt="Treasure Hunt">
-                <p>Treasure Hunt</p>
+                <img src="via.placeholder.com/150" alt="Treasure Hunt">
+                <h2>Treasure Hunt</h2>
             </div>
         </div>
     </div>
 
-    <!-- Story Screen -->
-    <div id="story-screen" class="screen">
-        <div id="story-text"></div>
+    <div id="story-screen" class="screen" style="display: none;">
+        <h1>Interactive Story</h1>
+        <p id="story-text"></p>
         <div id="choices"></div>
+        <input type="text" id="choice" placeholder="Type your choice">
+        <button id="submit-choice">Submit</button>
         <button id="go-back-button">Go Back</button>
     </div>
 
-    <!-- Ending Screen -->
-    <div id="ending-screen" class="screen">
-        <div id="ending-text"></div>
-        <button id="home-button-ending">Home</button>
-        <button id="analyze-button">Analyze My Choices</button>
-        <div id="analysis-report"></div>
+    <div id="ending-screen" class="screen" style="display: none;">
+        <h1>The End</h1>
+        <p id="ending-text"></p>
+        <button id="home-button-ending">Return Home</button>
+    </div>
+
+    <div id="analysis-screen" class="screen">
+        <button id="analyze-button">Analyze Choices</button>
+        <p id="analysis-report"></p>
     </div>
 
     <script src="script.js"></script>
