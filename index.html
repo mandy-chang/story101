@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Story with Analysis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -42,6 +43,15 @@
         .screen {
             display: none;
         }
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .icon-btn:hover {
+            color: #007BFF;
+        }
     </style>
 </head>
 <body>
@@ -67,7 +77,8 @@
                 <li>take the path</li>
                 <li>enter the cave</li>
             </ul>
-            <button id="home-button-story">Home</button> <!-- Home Button in Story -->
+            <button id="home-button-story" class="icon-btn"><i class="fas fa-home"></i></button> <!-- Home Icon -->
+            <button id="go-back-button" class="icon-btn"><i class="fas fa-arrow-left"></i></button> <!-- Go Back Icon -->
         </div>
 
         <!-- Ending Screen -->
@@ -76,7 +87,7 @@
             <p>Thank you for playing!</p>
             <button id="analyze-button">Analyze Your Choices</button>
             <div id="analysis-report"></div>
-            <button id="home-button-ending">Home</button> <!-- Home Button in Ending -->
+            <button id="home-button-ending" class="icon-btn"><i class="fas fa-home"></i></button> <!-- Home Icon -->
         </div>
     </div>
 
@@ -130,6 +141,7 @@
 
         let currentStep = 0;
         let userChoices = [];
+        let previousStep = -1;
 
         // Show the introduction screen initially
         document.getElementById("introduction-screen").style.display = "block";
@@ -148,6 +160,7 @@
 
             if (userChoice in currentOptions) {
                 userChoices.push(userChoice); // Store user choice
+                previousStep = currentStep; // Save previous step
                 currentStep = currentOptions[userChoice];
                 document.getElementById("story-text").textContent = story[currentStep].text;
 
@@ -168,6 +181,15 @@
             }
 
             document.getElementById("choice").value = "";
+        });
+
+        // Go Back functionality
+        document.getElementById("go-back-button").addEventListener("click", function() {
+            if (previousStep >= 0) {
+                currentStep = previousStep; // Return to previous step
+                document.getElementById("story-text").textContent = story[currentStep].text;
+                previousStep = -1; // Reset previous step
+            }
         });
 
         // Analyze user choices at the end of the story
