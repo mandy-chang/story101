@@ -46,19 +46,6 @@ header nav ul li a:hover {
     color: #ffffff;
 }
 
-header nav ul li input {
-    background-color: #1b1b1b;
-    border: 2px solid #76ff03;
-    color: #ffffff;
-    padding: 5px;
-    border-radius: 3px;
-    text-align: center;
-}
-
-header nav ul li input::placeholder {
-    color: #76ff03;
-}
-
 main {
     flex: 1;
     padding: 20px;
@@ -195,4 +182,38 @@ input#story-input::placeholder {
 h1, h2 {
     color: #76ff03;
     text-align: center;
+}
+
+/* Report Styles */
+#report-content {
+    background-color: #1b1b1b;
+    border: 2px solid #76ff03;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    color: #ffffff;
+}
+
+#report-content p {
+    margin: 10px 0;
+}
+
+#report-content h3 {
+    color: #76ff03;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #76ff03;
+    border: none;
+    color: #1b1b1b;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 20px auto;
+}
+
+button:hover {
+    background-color: #5cbf02;
 }
