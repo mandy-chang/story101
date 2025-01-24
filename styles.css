@@ -121,3 +121,7 @@ footer nav ul li a {
 .section {
     display: none;
 }
+
+.section.active {
+    display: block;
+}
