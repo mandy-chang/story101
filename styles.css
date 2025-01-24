@@ -65,26 +65,20 @@ footer nav ul li a {
     text-decoration: none;
 }
 
-.carousel, .genres, .story-list {
+.story-grid {
     display: flex;
-    overflow-x: auto;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-.story-background {
-    height: 300px;
-    background-color: #ccc;
-    margin-bottom: 20px;
-    display: none;
-}
-
-.story-content {
+.story-box {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 200px;
     text-align: center;
-}
-
-.character {
-    height: 100px;
-    margin-bottom: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .story-text {
