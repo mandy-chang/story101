@@ -1,208 +1,37 @@
-/* Basic Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* General Styles */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f1f1f1;
-  color: #333;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-/* Header Styles */
-header {
-  background-color: #333;
-  padding: 20px;
-  text-align: center;
-  color: white;
+#app {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-header .logo {
-  font-size: 2rem;
+.story {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-header nav ul {
-  display: flex;
-  justify-content: center;
-  list-style: none;
+.choice {
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-header nav ul li {
-  margin: 0 15px;
-}
-
-header nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.1rem;
-}
-
-/* Featured Stories Section */
-.featured {
-  padding: 20px;
-}
-
-.story-grid {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-}
-
-.story-item {
-  width: 250px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  padding: 15px;
-}
-
-.story-item img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.story-item button {
-  background-color: #5cb85c;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.story-item button:hover {
-  background-color: #4cae4c;
-}
-
-/* Genre Section */
-#genres {
-  padding: 20px;
-}
-
-.genre-list {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-
-.genre-list button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.genre-list button:hover {
-  background-color: #0056b3;
-}
-
-/* Library Section */
-#library {
-  padding: 20px;
-}
-
-.library-grid {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.library-item {
-  width: 250px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  padding: 15px;
-}
-
-.library-item img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.library-item button {
-  background-color: #5cb85c;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.library-item button:hover {
-  background-color: #4cae4c;
-}
-
-/* Story Screen */
-.story-screen {
-  display: none;
-  padding: 20px;
-}
-
-.story-background img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.story-text {
-  margin-top: 20px;
-}
-
-#choices button {
-  display: block;
-  background-color: #5cb85c;
-  color: white;
-  padding: 10px;
-  border: none;
-  margin-top: 10px;
-  width: 100%;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#choices button:hover {
-  background-color: #4cae4c;
-}
-
-.back-button {
-  background-color: #d9534f;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  position: absolute;
-  top: 10px;
-  left: 20px;
-}
-
-.back-button:hover {
-  background-color: #c9302c;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 10px;
-}
-
-footer button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 5px;
-}
-
-footer button:hover {
-  background-color: #0056b3;
+.choice:hover {
+    background-color: #f0f0f0;
 }
