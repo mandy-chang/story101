@@ -1,65 +1,58 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    text-align: center;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    background-color: #f0f0f0;
 }
 
 #home-screen, #story-screen, #ending-screen {
-    text-align: center;
-}
-
-h1 {
-    font-size: 2em;
-    margin-bottom: 20px;
-}
-
-.story-icon {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px;
-    margin: 10px;
-    cursor: pointer;
-    border-radius: 8px;
-}
-
-.story-icon:hover {
-    background-color: #45a049;
-}
-
-#story-text {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-}
-
-#choices button {
-    display: block;
-    margin: 10px auto;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-#choices button:hover {
-    background-color: #45a049;
+    display: none;
 }
 
 button {
     padding: 10px 20px;
-    background-color: #008CBA;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #3498db;
     color: white;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
+    margin-top: 20px;
 }
 
 button:hover {
-    background-color: #007bb5;
+    background-color: #2980b9;
+}
+
+.home-button {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#story-screen, #ending-screen {
+    display: block;
+}
+
+#options {
+    margin-top: 20px;
+}
+
+.option {
+    padding: 10px;
+    font-size: 18px;
+    background-color: #2ecc71;
+    margin: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.option:hover {
+    background-color: #27ae60;
+}
+
+#story-screen h1, #ending-screen h1 {
+    font-size: 24px;
 }
